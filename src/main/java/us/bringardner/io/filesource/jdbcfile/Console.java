@@ -1465,28 +1465,7 @@ public class Console {
 
 	}
 
-	public static void main(String[] args) throws IOException {
 
-
-
-		String dbid = "test";
-		System.setProperty("test.dbid",dbid);		
-		System.setProperty(dbid+"."+JdbcFileSourceFactory.JDBC_DRIVER, "com.mysql.cj.jdbc.Driver");
-		System.setProperty(dbid+"."+JdbcFileSourceFactory.JDBC_URL, "jdbc:mysql://bringardner.us:3306/email");
-		System.setProperty(dbid+"."+JdbcFileSourceFactory.JDBC_USERID, "tony");
-		System.setProperty(dbid+"."+JdbcFileSourceFactory.JDBC_PASSWORD, "0000");
-
-		//FileSourceFactory factory = FileSourceFactory.getFileSourceFactory(SimpleJdbcFileFactory.FACTORY_ID);
-
-		Console con = new Console() ;
-
-		con.run();
-
-
-
-
-
-	}
 
 	private void setDefaultValues(Properties props2, String name) {
 		for(Object key : props2.keySet()) {
