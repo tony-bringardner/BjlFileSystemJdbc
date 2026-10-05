@@ -25,18 +25,27 @@
  */
 package us.bringardner.filesource.jdbc;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeAll;
 
-import us.bringardner.io.filesource.test.AbstractTestClass;
+import us.bringardner.io.filesource.FileSource;
+import us.bringardner.io.filesource.IRandomAccessIoController;
+import us.bringardner.io.filesource.jdbcfile.JdbcFileSource;
+import us.bringardner.io.filesource.jdbcfile.JdbcRandomAccessIoController;
+import us.bringardner.io.filesource.test.FileSourceRandomAccessIoBufferTests;
 
-/** The shared FileSource tests over JDBC (HSQLDB). */
-public class TestJdbcFileSource extends AbstractTestClass {
+/** The shared random access I/O controller tests over JDBC, with small chunks. */
+public class JdbcRandomAccessIoBufferTests extends FileSourceRandomAccessIoBufferTests {
 
 	@BeforeAll
-	public static void setUp() throws Exception {
-		localTestFileDirPath = "TestFiles";
-		localCacheDirPath = "target/TestFiles";
-		remoteTestFileDirPath = "TestFiles";
-		JdbcTestServer.setUp(9001);
+	public static void setup() throws Exception {
+		remoteTestFileDirPath = "/RandomAccessIoBufferTests";
+		JdbcTestServer.setUp(9003).setChunk_size(100);
+	}
+
+	@Override
+	protected IRandomAccessIoController getRandomAccessFileStream(FileSource file) throws IOException {
+		return new JdbcRandomAccessIoController((JdbcFileSource) file);
 	}
 }

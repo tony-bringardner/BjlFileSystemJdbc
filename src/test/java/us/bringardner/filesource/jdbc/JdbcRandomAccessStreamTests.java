@@ -27,16 +27,14 @@ package us.bringardner.filesource.jdbc;
 
 import org.junit.jupiter.api.BeforeAll;
 
-import us.bringardner.io.filesource.test.AbstractTestClass;
+import us.bringardner.io.filesource.test.AbstractRandomAccessStreamTests;
 
-/** The shared FileSource tests over JDBC (HSQLDB). */
-public class TestJdbcFileSource extends AbstractTestClass {
+/** The shared random access stream tests over JDBC, with small chunks. */
+public class JdbcRandomAccessStreamTests extends AbstractRandomAccessStreamTests {
 
 	@BeforeAll
-	public static void setUp() throws Exception {
-		localTestFileDirPath = "TestFiles";
-		localCacheDirPath = "target/TestFiles";
-		remoteTestFileDirPath = "TestFiles";
-		JdbcTestServer.setUp(9001);
+	public static void setup() throws Exception {
+		remoteTestFileDirPath = "/RandomAccessStreamTests";
+		JdbcTestServer.setUp(9002).setChunk_size(100);
 	}
 }

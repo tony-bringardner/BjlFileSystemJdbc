@@ -27,16 +27,16 @@ package us.bringardner.filesource.jdbc;
 
 import org.junit.jupiter.api.BeforeAll;
 
-import us.bringardner.io.filesource.test.AbstractTestClass;
+import us.bringardner.io.filesource.test.AbstractNioProviderTests;
 
-/** The shared FileSource tests over JDBC (HSQLDB). */
-public class TestJdbcFileSource extends AbstractTestClass {
+/** The shared java.nio.file provider tests over JDBC (HSQLDB). */
+public class JdbcNioProviderTests extends AbstractNioProviderTests {
 
 	@BeforeAll
 	public static void setUp() throws Exception {
 		localTestFileDirPath = "TestFiles";
-		localCacheDirPath = "target/TestFiles";
-		remoteTestFileDirPath = "TestFiles";
-		JdbcTestServer.setUp(9001);
+		localCacheDirPath = "target/NioTestFiles";
+		remoteTestFileDirPath = "/NioProviderTests";
+		JdbcTestServer.setUp(9007);
 	}
 }
